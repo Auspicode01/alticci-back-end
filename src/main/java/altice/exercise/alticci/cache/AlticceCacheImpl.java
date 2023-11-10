@@ -1,7 +1,7 @@
 package altice.exercise.alticci.cache;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
 
 import java.math.BigInteger;
@@ -14,8 +14,8 @@ public class AlticceCacheImpl implements AlticciCache {
 
     private static List<BigInteger> alticciSequence;
 
-    @Autowired
-    public void AlticciService() {
+    @PostConstruct
+    public void PostConstruct() {
         alticciSequence = new ArrayList<>();
         alticciSequence.add(BigInteger.ZERO);
         alticciSequence.add(BigInteger.ONE);
