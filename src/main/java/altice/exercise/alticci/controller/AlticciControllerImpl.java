@@ -1,7 +1,6 @@
 package altice.exercise.alticci.controller;
 
 import altice.exercise.alticci.service.AlticciService;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +22,7 @@ public class AlticciControllerImpl implements AlticciController {
 
     @GetMapping("/{n}")
     @Override
-    public ResponseEntity<BigInteger> getSequenceNumber(@Valid @PathVariable(name = "n", required = true) Integer n) {
+    public ResponseEntity<BigInteger> getSequenceNumber(@PathVariable Integer n) {
         return new ResponseEntity<>(alticciService.getSequenceNumber(n), HttpStatus.OK);
     }
 }

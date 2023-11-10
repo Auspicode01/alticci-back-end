@@ -1,5 +1,6 @@
 package altice.exercise.alticci.exception;
 
+import lombok.Generated;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.http.HttpStatusCode;
@@ -8,6 +9,7 @@ import java.time.ZonedDateTime;
 
 @Getter
 @Setter
+@Generated
 public class CustomException {
 
     private final String message;
