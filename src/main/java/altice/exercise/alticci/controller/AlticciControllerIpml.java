@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigInteger;
+
 @RestController
 @AllArgsConstructor
 @Validated
@@ -20,7 +22,7 @@ public class AlticciControllerIpml implements AlticciController {
 
     @GetMapping("/{n}")
     @Override
-    public ResponseEntity<Integer> getSequenceNumber(@PathVariable Integer n) {
+    public ResponseEntity<BigInteger> getSequenceNumber(@PathVariable Integer n) {
         return new ResponseEntity<>(alticciService.getSequenceNumber(n), HttpStatus.OK);
     }
 }

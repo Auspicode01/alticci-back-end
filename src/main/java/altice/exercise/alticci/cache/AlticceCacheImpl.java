@@ -4,6 +4,7 @@ package altice.exercise.alticci.cache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -11,14 +12,14 @@ import java.util.Optional;
 @Component
 public class AlticceCacheImpl implements AlticciCache {
 
-    private static List<Integer> alticciSequence;
+    private static List<BigInteger> alticciSequence;
 
     @Autowired
     public void AlticciService() {
         alticciSequence = new ArrayList<>();
-        alticciSequence.add(0);
-        alticciSequence.add(1);
-        alticciSequence.add(1);
+        alticciSequence.add(BigInteger.ZERO);
+        alticciSequence.add(BigInteger.ONE);
+        alticciSequence.add(BigInteger.ONE);
     }
 
     @Override
@@ -27,12 +28,12 @@ public class AlticceCacheImpl implements AlticciCache {
     }
 
     @Override
-    public void addSequenceNumber(Integer n) {
+    public void addSequenceNumber(BigInteger n) {
         alticciSequence.add(n);
     }
 
     @Override
-    public Optional<Integer> getSequenceIndex(Integer n) {
+    public Optional<BigInteger> getSequenceNumber(Integer n) {
         return n < alticciSequence.size() ? Optional.of(alticciSequence.get(n)) : Optional.empty();
     }
 }

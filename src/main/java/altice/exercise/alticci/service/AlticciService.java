@@ -4,6 +4,7 @@ import altice.exercise.alticci.cache.AlticciCache;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.util.stream.IntStream;
 
 @Service
@@ -15,14 +16,14 @@ public class AlticciService {
 
     private final AlticciCache alticciCache;
 
-    public Integer getSequenceNumber(Integer n) {
-        return alticciCache.getSequenceIndex(n).orElseGet(() ->
-                alticciCache.getSequenceIndex(calculateSequenceNumber(n)).get());
+    public BigInteger getSequenceNumber(Integer n) {
+        return alticciCache.getSequenceNumber(n).orElseGet(() ->
+                alticciCache.getSequenceNumber(calculateSequenceNumber(n)).get());
     }
 
     private Integer calculateSequenceNumber(Integer n) {
         IntStream.rangeClosed(alticciCache.getSequenceSize(), n)
-                .forEach(i -> alticciCache.addSequenceNumber(alticciCache.getSequenceIndex(i - COMPUTING_INDEX_A).get() + alticciCache.getSequenceIndex(i - COMPUTING_INDEX_B).get()));
+                .forEach(i -> alticciCache.addSequenceNumber(alticciCache.getSequenceNumber(i - COMPUTING_INDEX_A).get().add(alticciCache.getSequenceNumber(i - COMPUTING_INDEX_B).get())));
         return n;
     }
 
