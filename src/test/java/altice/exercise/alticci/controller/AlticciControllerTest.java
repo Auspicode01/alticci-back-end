@@ -38,10 +38,18 @@ class AlticciControllerTest {
     @Test
     void WhenGetSequenceNumber_ReturnOk() throws Exception {
         Mockito.when(alticciService.getSequenceNumber(any(Integer.class))).thenReturn(new BigInteger("1"));
-        mockMvc.perform(MockMvcRequestBuilders.get("/alticci/{n}", "1")
+        mockMvc.perform(MockMvcRequestBuilders.get("/alticci/{n}", 10)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+    }
+
+    @Test
+    void WhenGetSequenceNumberWithoutPathVariable_ReturnNotFound() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/alticci/")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isNotFound());
     }
 }
